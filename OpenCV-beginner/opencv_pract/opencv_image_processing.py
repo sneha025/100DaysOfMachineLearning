@@ -21,3 +21,29 @@ print(" height: {}\n widh: {}\n depth: {}".format(h, w, d))
 print (" R :{}, G:{}, B: {}".format(R,G,B))
 
 # extracting the Region of interest (ROI)
+
+# manual extraction
+# for extracting the roi we need the cordinates which create a rectangle (ymin : ymax , xmin:xmax)
+# image[startY:endY, startX:endX]
+roi = image[160:260, 320:420]
+#cv2.imshow("ROI",roi)
+#cv2.waitKey(0)
+
+# resize the image in 200X200 pixels
+
+resize = cv2.resize(image, (200,200))
+#cv2.imshow("resized" ,resize)
+#cv2.waitKey(0)
+
+# instead of fixed ratio , we going to set aspect ratio
+
+r = 300.0/w
+dim = (300, int(h*r))  # dimension are in the form of the (widht X height)
+
+# we created a aspect ratio r of new width  , we wanna to have 300px to be our width
+# then we need the  new height with related to the 300 widht = h*r
+
+
+new_resize = cv2.resize(image,dim)
+cv2.imshow("resized" ,new_resize)
+cv2.waitKey(0)
